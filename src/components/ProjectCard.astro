@@ -1,0 +1,6 @@
+---
+import Visual from './Visual.astro';
+const { project: p, featured = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<article class:list={['project-card',{featured}]}><a class="project-image" href={`${base}projects/${p.slug}/`} aria-label={`View ${p.title}`}>{p.image ? <img src={`${base}assets/${p.image}`} alt={p.alt} width="1200" height="800" loading="lazy"/> : <Visual type={p.visual} compact/>}</a><div class="project-info"><div class="eyebrow"><span>{p.number} / {p.category}</span><span>{p.status}</span></div><a class="project-title" href={`${base}projects/${p.slug}/`}><h3>{p.title}</h3><span aria-hidden="true">↗</span></a><p>{p.summary}</p></div></article>

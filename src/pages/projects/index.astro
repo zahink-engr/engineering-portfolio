@@ -1,0 +1,7 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import {projects} from '../../data/projects.js';
+const base=import.meta.env.BASE_URL;
+---
+<Layout title="Projects — Zahin Kabir" active="Projects"><section class="wrap page-top"><p class="eyebrow">ENGINEERING CASE STUDIES</p><h1>Selected work</h1><p class="lede">Mechanical systems, experimental equipment, and instrumented research.</p></section><section class="wrap project-grid all-projects">{projects.map(p=><ProjectCard project={p}/>)}</section><div class="wrap"><a class="additional-link" href={`${base}projects/additional/`}><span>Additional engineering work</span><span>Ourobio / EPICS at Purdue</span><span aria-hidden="true">↗</span></a></div></Layout>
