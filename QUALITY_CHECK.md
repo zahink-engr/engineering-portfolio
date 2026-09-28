@@ -23,9 +23,9 @@
 - Cleared Shinkei hardware photography and CAD now replace the scope-only presentation.
 - The roaster architecture is explicitly proposed. Structural welding/fabrication is now documented; completed operation, controls, or roast trials are not claimed.
 - Pressure-tester and EPICS public images are low resolution. They are preserved honestly rather than synthetically enhanced.
-- Contact opens the existing Squarespace form. Form delivery was not tested by sending a message.
-- Final hosting URL is not assigned. Set SITE_URL at deployment for canonical and Open Graph URL fields.
-- This is a locally built version prepared for free hosting. No public deployment or GitHub push occurred.
+- Contact displays zkabir@purdue.edu and opens a mailto draft. No test email was sent.
+- Hosting URL: https://zahink-engr.github.io/engineering-portfolio/. The workflow sets SITE_URL and BASE_PATH.
+- GitHub Pages deployment is active on pushes to main.
 
 ## Re-run production checks
 
@@ -37,4 +37,11 @@ node scripts/verify.mjs
 ## Shinkei / GitHub Pages update
 
 Six cleared Shinkei assets rendered and checked in browser. Desktop homepage and mobile case-study layout checked without overflow. Both root and /engineering-portfolio/ production builds pass the reference checker. GitHub Actions workflow prepared but cannot be executed on GitHub until the repository is uploaded and Pages is enabled.
+
+
+## September 28 theme and contact update
+
+- Dark black/red/green CSS theme with abstract print textures inspired by supplied references; no reference artwork copied.
+- Production build: 12 pages, 210 validated local references, 22 image references, zero client JavaScript files, no checker errors.
+- Desktop homepage and mobile home/contact inspected at 390 px; contact and Shinkei inspected at 320 px with no horizontal overflow.
 

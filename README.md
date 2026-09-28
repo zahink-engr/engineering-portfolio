@@ -21,7 +21,8 @@ The production output is `dist/`. The default local development URL is printed b
 - `src/pages/projects/additional.astro`: Ourobio and EPICS.
 - `src/pages/experience.astro`, `about.astro`, `resume.astro`, `contact.astro`: background and contact.
 - `src/components/Visual.astro`: public-safe scope and proposed-architecture diagrams.
-- `src/styles/global.css`: visual system and responsive layouts.
+- `src/styles/global.css`: base layouts; `src/styles/theme.css`: dark red, black, and green technical-collage theme.
+- `src/data/site.js`: direct email contact address.
 - `public/assets/`: only selected public imagery. Do not put private source files here.
 
 The current resume route uses a request link. Once the real approved PDF is supplied, add it under `public/assets/resume/` and replace the request link with a download link. Never fabricate a PDF or employment dates to fill this gap.
@@ -45,10 +46,11 @@ For GitHub Pages, set `BASE_PATH=/repository-name/` for a project site and `SITE
 
 ## Review before release
 
-Read the four review documents in the parent workspace. They are local editorial records, not site assets. No deployment, GitHub account action, domain purchase, or public release was performed as part of this local implementation.
+Read the four review documents in the parent workspace. They are local editorial records, not site assets. The site is published at https://zahink-engr.github.io/engineering-portfolio/ through the included GitHub Pages workflow.
 
-Known content limits: resume incorporation pending; roaster white paper and additional photos pending; NERA/customer Shinkei media withheld; cleared rigor/TPA/HSI images integrated; recovered pressure-tester and EPICS images have limited resolution; contact relies on the existing Squarespace form.
+Known content limits: resume incorporation pending; roaster white paper and additional photos pending; NERA/customer Shinkei media withheld; cleared rigor/TPA/HSI images integrated; recovered pressure-tester and EPICS images have limited resolution; contact uses a direct email link to zkabir@purdue.edu, verified against the supplied resume.
 
 ## Ready-to-use GitHub Pages deployment
 
 See [PUBLISHING.md](PUBLISHING.md) for the upload commands and Pages setup. The included workflow handles builds, local-link verification, repository subpaths, and deployment on pushes to main.
+

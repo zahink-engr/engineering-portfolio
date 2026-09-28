@@ -1,4 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { contactEmail, contactHref } from '../data/site.js';
 ---
-<Layout title="Contact — Zahin Kabir" active="Contact"><section class="wrap page-top contact-page"><p class="eyebrow">CONTACT</p><h1>Let’s talk<br/>engineering.</h1><p class="lede">For mechanical design, robotics, hardware, and R&D opportunities.</p><a class="button" href="https://chipmunk-bluebird-h2ag.squarespace.com/contact">Open my contact form <span aria-hidden="true">↗</span></a><p class="caption">The contact form opens on my existing portfolio.</p></section></Layout>
+<Layout title="Contact — Zahin Kabir" active="Contact"><section class="wrap page-top contact-page"><div><p class="eyebrow">CONTACT / DIRECT EMAIL</p><h1>Let’s talk<br/><em>engineering.</em></h1><p class="lede">For mechanical design, robotics, hardware, and R&D opportunities.</p></div><div class="contact-address"><p class="eyebrow">ZAHIN KABIR</p><a class="email-address" href={contactHref}>{contactEmail}<span aria-hidden="true">↗</span></a><p>Email me about a role, a project, or a technical question.</p><a class="button" href={contactHref}>Write an email <span aria-hidden="true">↗</span></a><p class="caption">Opens your email app. You can also copy the address above.</p></div></section></Layout>
