@@ -45,3 +45,11 @@ Six cleared Shinkei assets rendered and checked in browser. Desktop homepage and
 - Production build: 12 pages, 210 validated local references, 22 image references, zero client JavaScript files, no checker errors.
 - Desktop homepage and mobile home/contact inspected at 390 px; contact and Shinkei inspected at 320 px with no horizontal overflow.
 
+
+## Project voice and evidence update
+
+Shinkei and KDP prose revised to first-person, conversational copy at the user's request. Technical limits and shared ownership remain explicit. Personal coffee-roaster content compared with the prior commit and unchanged.
+
+Added eleven Shinkei still images from cleared rigor/TPA slides, the original 48-frame rigor GIF plus its still poster, and four KDP context/results slides already published in the original portfolio. The animation opens and closes through a native disclosure control. New gallery images link to their full-size asset. Decorative slide assets and private message screenshots were not used.
+
+Production verification: 12 pages, 242 local references, 39 image references, no errors, no client JavaScript. Mobile gallery and animation disclosure checked in the browser. The private-source checker allows only the specifically approved rigor GIF.

@@ -24,7 +24,8 @@ for(const file of pages){
  }
  for(const match of text.matchAll(/<img\b[^>]*>/g)){images++;if(!/alt="[^\"]+"/.test(match[0]))errors.push(`${file}: missing image alt`);}
 }
-const banned=files.filter(f=>/\.(pptx|docx|pdf|gif|csv)$/i.test(f)||/source-review|image\d+\./.test(f));
+const approvedAnimations=new Set(['assets/shinkei/rigor-tracking.gif']);
+const banned=files.filter(f=>(/\.(pptx|docx|pdf|gif|csv)$/i.test(f)&&!approvedAnimations.has(path.relative(root,f).split(path.sep).join('/')))||/source-review|image\d+\./.test(f));
 if(banned.length)errors.push(...banned.map(f=>`Unexpected private source candidate: ${f}`));
 const home=fs.readFileSync(path.join(root,'index.html'));
 console.log(JSON.stringify({pages:pages.length,localReferences:links,imageReferences:images,clientJavaScriptFiles:files.filter(f=>f.endsWith('.js')).length,totalBytes:files.reduce((n,f)=>n+fs.statSync(f).size,0),homeGzipBytes:zlib.gzipSync(home).length,errors},null,2));
