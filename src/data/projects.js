@@ -11,7 +11,7 @@ export const projects = [
     "image": "shinkei/rigor-mechanical-assembly.webp",
     "alt": "Exploded CAD view of the rigor mortis system shelf and supporting mechanical components",
     "coverCaption": "Rigor mortis system: mechanical assembly shown in my summer 2026 internship presentation.",
-    "summary": "I worked on the hardware and software behind rigor mortis tracking, hyperspectral imaging, and texture analysis.",
+    "summary": "I worked on texture analysis, hyperspectral imaging, NERA computer vision, and rigor mortis tracking.",
     "role": "R&D / Quality Mechanical Engineering Intern",
     "team": "Shinkei engineering and research team; improvements to existing systems",
     "tools": [
@@ -22,15 +22,171 @@ export const projects = [
       "Hyperspectral imaging",
       "Serial data acquisition"
     ],
-    "intro": "A lot of my summer at Shinkei was spent getting research equipment to work the way we needed it to. That meant switching between CAD, wiring, Python, and the actual machines. Here are the rigor mortis, hyperspectral imaging, and texture-analysis projects I worked on.",
+    "intro": "At Shinkei, I worked on equipment for studying fish quality and on the NERA computer-vision module. I got to take these projects through CAD, assembly, testing, and software development. Here are the systems I worked on!",
     "sections": [
       {
-        "title": "What I worked on",
-        "text": "The R&D team needed repeatable ways to measure changes in fish quality. I worked on an existing rigor mortis system, set up new imaging equipment, and helped get a texture analyzer running. Some days that meant changing a bracket. Other days it meant figuring out why a camera or a serial connection was not cooperating."
+        "title": "TPA analyser: custom procurement and commissioning",
+        "text": "I worked with a vendor in China to procure a custom texture profile analyser, then helped assemble, calibrate, and test it. The machine came with a microprinter as its only output, so the next part of my project was getting those readings onto a computer."
+      },
+      {
+        "title": "TPA analyser: a digital load-cell feed",
+        "text": "I tapped into the printer output through a serial connection and used PuTTY to read it. After working out the output speed and COM-port settings, I had a live feed from the internal load cell on my laptop! I then integrated that feed into my own UI. The connection is read-only; it does not control the machine’s motion.",
+        "image": "shinkei/texture-analyzer-data-interface.webp",
+        "alt": "Rear of the texture analyzer with serial interface hardware and a USB connection",
+        "caption": "The serial interface connected to the back of the analyzer.",
+        "gallery": [
+          {
+            "image": "shinkei/texture-printer-connector.webp",
+            "alt": "Printer module and connector used during texture-analyzer interface development",
+            "caption": "The printer hardware I was working with."
+          },
+          {
+            "image": "shinkei/texture-interface-bench.webp",
+            "alt": "Serial interface components and wiring being tested at a desk",
+            "caption": "Working through the interface on the bench."
+          },
+          {
+            "image": "shinkei/texture-terminal-readout.webp",
+            "alt": "PuTTY terminal showing force readings from the texture analyzer",
+            "caption": "The moment the analyzer output made it onto the laptop."
+          }
+        ]
+      },
+      {
+        "title": "My wonderfully pink user interface — Texture Lab",
+        "text": "I made this UI incredibly pink because the R&D scientist thought it would be cute :) Texture Lab brings the connection settings and live load-cell feed together so we can watch the measurements on a computer. The output rate is still too slow to fully capture a fast compression curve, so calculating texture properties from it would need further validation.",
+        "image": "shinkei/texture-lab-interface.webp",
+        "alt": "Shinkei Texture Lab read-only connection and live-force interface",
+        "caption": "The Texture Lab interface. This screenshot shows the disconnected state, rather than a recorded test.",
+        "gallery": [
+          {
+            "image": "shinkei/texture-pink-ui-laptop.webp",
+            "alt": "Bright pink Texture Lab interface open on a laptop",
+            "caption": "My wonderfully pink Texture Lab UI running on my laptop."
+          }
+        ]
+      },
+      {
+        "title": "HSI: commissioning and workflow optimization",
+        "text": "I commissioned the Resonon hyperspectral imager and worked on the acquisition settings and workflow. I also worked on a pilot study exploring the relationship between fish spoilage and spectral data. This brought the equipment setup and experimental work together.",
+        "image": "shinkei/hsi-texture-lab.webp",
+        "alt": "Resonon hyperspectral imaging apparatus and texture-analysis equipment on a laboratory bench",
+        "caption": "The HSI and texture-analysis equipment after setup in the lab."
+      },
+      {
+        "title": "HSI: pilot-study acquisition",
+        "text": "These initial scans helped me refine the imaging workflow for the spoilage-correlation pilot study. The view below shows the acquisition software; it is not a final correlation result.",
+        "image": "shinkei/hyperspectral-imaging-setup.webp",
+        "alt": "Hyperspectral acquisition software displaying a fish sample and an RGB pixel-index plot",
+        "caption": "An initial scan in the HSI software. The RGB pixel-index plot shown here is not a calibrated spectral result."
+      },
+      {
+        "title": "NERA: visual detection module",
+        "text": "I worked on the design, fabrication, installation, and deployment of the NERA computer-vision module, along with hardware and software troubleshooting. A big part of the work was making sure the cameras could see the fish clearly in the actual operating environment.",
+        "gallery": [
+          {
+            "image": "shinkei/nera-overview.webp",
+            "alt": "CAD assembly of the NERA visual detection module",
+            "caption": "The NERA visual detection module in CAD."
+          },
+          {
+            "image": "shinkei/nera-collection.webp",
+            "alt": "Fish positioned on a wire support for NERA image collection",
+            "caption": "The image-collection setup."
+          },
+          {
+            "image": "shinkei/nera-lighting.webp",
+            "alt": "Illuminated fish sample inside the NERA module",
+            "caption": "Checking the sample under the module lighting."
+          }
+        ]
+      },
+      {
+        "title": "NERA: assembly and deployment",
+        "text": "I helped assemble NERA2, terminate wires, widen cable openings, and prepare the shipping crate. After deploying CV2 in Tacoma, we used test runs to identify visibility problems with the bottom camera and polycarbonate panels.",
+        "gallery": [
+          {
+            "image": "shinkei/nera-wiring.webp",
+            "alt": "Terminated cable connections on a workbench",
+            "caption": "Terminating the connections during assembly."
+          },
+          {
+            "image": "shinkei/nera-deployment.webp",
+            "alt": "NERA equipment during deployment work",
+            "caption": "On site for assembly and deployment."
+          },
+          {
+            "image": "shinkei/nera-assembly.webp",
+            "alt": "NERA equipment being prepared near a workshop loading area",
+            "caption": "Preparing the equipment for deployment."
+          },
+          {
+            "image": "shinkei/nera-panel.webp",
+            "alt": "NERA enclosure panel with a circular opening",
+            "caption": "Working on the enclosure."
+          }
+        ]
+      },
+      {
+        "title": "NERA: camera position and wire-rack design",
+        "text": "I explored wire supports in place of polycarbonate to give the cameras a more direct view of the flesh and gut cavity. The bottom camera was affected by fish slime and condensation from the spray system. Moving the camera above the fish addressed that issue and removed the need for the solenoids in that arrangement, but required a new layout and more work on side visibility. I also added a cantilevered loading channel for the upright wire rack and clamp system.",
+        "gallery": [
+          {
+            "image": "shinkei/nera-wire-rack.webp",
+            "alt": "NERA CAD model showing a wire rack and loading support",
+            "caption": "The wire-rack and loading-support layout."
+          },
+          {
+            "image": "shinkei/nera-view-clear.webp",
+            "alt": "Fish sample viewed through the NERA support arrangement",
+            "caption": "One of the imaging views used to assess visibility."
+          },
+          {
+            "image": "shinkei/nera-view-fog.webp",
+            "alt": "Hazy camera image of a fish sample in NERA",
+            "caption": "A visibility issue seen during testing."
+          }
+        ]
+      },
+      {
+        "title": "NERA: support height and clamp iterations",
+        "text": "With the fish centered in the machine, the dorsal region was difficult to see. I tested changes to the support-beam height and worked on the clamp layout. The first clamp design left too little room for the flesh, and fish in rigor tended to close in the top-camera orientation. These photos and CAD views show the iterations I worked through.",
+        "gallery": [
+          {
+            "image": "shinkei/nera-clamp.webp",
+            "alt": "Fish sample held in the NERA clamp and wire rack",
+            "caption": "Testing how the clamp held the sample."
+          },
+          {
+            "image": "shinkei/nera-height.webp",
+            "alt": "Fish sample positioned beneath the NERA lighting and support beams",
+            "caption": "Testing the support layout and sample position."
+          },
+          {
+            "image": "shinkei/nera-side-view.webp",
+            "alt": "End view through the NERA support assembly",
+            "caption": "Checking the side view through the supports."
+          },
+          {
+            "image": "shinkei/nera-layout.webp",
+            "alt": "NERA CAD assembly with highlighted support geometry",
+            "caption": "Adjusting the rack geometry in CAD."
+          },
+          {
+            "image": "shinkei/nera-cad-front.webp",
+            "alt": "Front perspective of the NERA support and clamp assembly",
+            "caption": "The support and clamp assembly in CAD."
+          },
+          {
+            "image": "shinkei/nera-cad-side.webp",
+            "alt": "Side perspective of the NERA support and clamp assembly",
+            "caption": "A second view of the assembly."
+          }
+        ]
       },
       {
         "title": "Rigor mortis: from CAD to the machine",
-        "text": "I changed the limit-switch brackets so we could adjust the starting positions instead of fighting a fixed setup. I also worked on the mechanical structure and HMI mount. These are the CAD views and some of the hands-on fitting work behind those changes.",
+        "text": "I changed the limit-switch brackets so we could adjust the starting positions to make the setup easier to adjust. I also worked on the mechanical structure and HMI mount. These are the CAD views and some of the hands-on fitting work behind those changes.",
         "image": "shinkei/adjustable-limit-switch-bracket.webp",
         "alt": "Siemens NX view of an adjustable limit-switch bracket attached to a support member",
         "caption": "The adjustable limit-switch bracket in NX.",
@@ -53,7 +209,7 @@ export const projects = [
         ]
       },
       {
-        "title": "Rigor mortis: making runs less fragile",
+        "title": "Rigor mortis: controls and reliability",
         "text": "Most of the fixes were in the run script: camera-health checks, starting-position and detection checks, overactuation limits, and logs that made troubleshooting much easier. I also worked through inconsistent pinout wiring, camera calibration, automatic uploads, and the two-Pi setup. A KVM switch let us control both computers from one screen.",
         "table": [
           [
@@ -119,74 +275,11 @@ export const projects = [
           "poster": "shinkei/rigor-tracking-poster.webp",
           "alt": "Animated rigor mortis image sequence showing colored tracking markers on the fish",
           "caption": "The original tracking animation from my rigor mortis slide. Open it to watch the sequence; close it to hide the motion."
-        },
-        "gallery": [
-          {
-            "image": "shinkei/rigor-analysis-visual.webp",
-            "alt": "Orange and yellow fish-shaped visualization on a black background",
-            "caption": "An analysis visualization included alongside the workflow in my presentation."
-          }
-        ]
-      },
-      {
-        "title": "Hyperspectral imaging: setup",
-        "text": "The Resonon hyperspectral camera arrived during my internship, so I installed it, got it set up, and started testing it. I worked on the settings and procedures we would need for future fish-quality correlation studies. This part of the project was about getting the equipment and acquisition process ready.",
-        "image": "shinkei/hsi-texture-lab.webp",
-        "alt": "Resonon hyperspectral imaging apparatus and texture-analysis equipment on a laboratory bench",
-        "caption": "The HSI and texture-analysis equipment after setup in the lab."
-      },
-      {
-        "title": "Hyperspectral imaging: initial acquisition",
-        "text": "Here is one of the initial acquisition views from the imaging software. I used these early scans to work through setup and scan configuration before the later correlation studies.",
-        "image": "shinkei/hyperspectral-imaging-setup.webp",
-        "alt": "Hyperspectral acquisition software displaying a fish sample and an RGB pixel-index plot",
-        "caption": "An initial scan in the HSI software. The RGB pixel-index plot shown here is not a calibrated spectral result."
-      },
-      {
-        "title": "Texture analysis: first, get the machine here",
-        "text": "There was quite a bit of back-and-forth with the vendor before the texture analyzer finally arrived. I helped get it procured, assembled, calibrated, and tested. Then we ran into the next problem: it printed its results on tiny receipt paper. That was not especially helpful when we wanted the measurements on a computer."
-      },
-      {
-        "title": "Texture analysis: getting data off receipt paper",
-        "text": "My plan was to read the printer output through a serial connection and bring it into PuTTY. I worked out the output speed and COM-port settings, and got the internal load-cell readings onto my laptop. Success :D The interface only reads the output; it does not control the machine’s motion.",
-        "image": "shinkei/texture-analyzer-data-interface.webp",
-        "alt": "Rear of the texture analyzer with serial interface hardware and a USB connection",
-        "caption": "The serial interface connected to the back of the analyzer.",
-        "gallery": [
-          {
-            "image": "shinkei/texture-printer-connector.webp",
-            "alt": "Printer module and connector used during texture-analyzer interface development",
-            "caption": "The printer hardware I was working with."
-          },
-          {
-            "image": "shinkei/texture-interface-bench.webp",
-            "alt": "Serial interface components and wiring being tested at a desk",
-            "caption": "Working through the interface on the bench."
-          },
-          {
-            "image": "shinkei/texture-terminal-readout.webp",
-            "alt": "PuTTY terminal showing force readings from the texture analyzer",
-            "caption": "The moment the analyzer output made it onto the laptop."
-          }
-        ]
-      },
-      {
-        "title": "Texture Lab (yes, it is very pink)",
-        "text": "I made this UI incredibly pink because the R&D scientist thought it would be cute :) It puts the connection settings and live-force readout in one place. There is still a real measurement limit here: the output rate cannot fully capture a fast compression curve, so I would not use an undersampled trace to calculate texture properties without validating that measurement first.",
-        "image": "shinkei/texture-lab-interface.webp",
-        "alt": "Shinkei Texture Lab read-only connection and live-force interface",
-        "caption": "The Texture Lab interface. This screenshot shows the disconnected state, rather than a recorded test.",
-        "gallery": [
-          {
-            "image": "shinkei/texture-pink-ui-laptop.webp",
-            "alt": "Bright pink Texture Lab interface open on a laptop",
-            "caption": "The very pink UI running on my laptop."
-          }
-        ]
+        }
       },
       {
         "title": "What I took away",
-        "text": "I got to follow changes all the way from NX and sheet metal to installation and troubleshooting. I also spent a lot of time on the less glamorous parts of research equipment: reliable connections, useful logs, clear procedures, and interfaces people actually want to use. Those details made up a big part of this internship."
+        "text": "I loved getting to work across mechanical design, experimental equipment, and software in the same internship. I built experience with NX, sheet metal, fabrication, food-safe design, and research procedures, and got to see how those pieces come together on the actual machines."
       }
     ]
   },

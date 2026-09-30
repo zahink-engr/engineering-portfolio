@@ -79,10 +79,6 @@
     1600,
     867
   ],
-  "shinkei/rigor-analysis-visual.webp": [
-    1600,
-    884
-  ],
   "shinkei/rigor-bracket-built.webp": [
     1200,
     1600
@@ -142,5 +138,69 @@
   "shinkei/texture-terminal-readout.webp": [
     1200,
     1600
+  ],
+  "shinkei/nera-overview.webp": [
+    895,
+    717
+  ],
+  "shinkei/nera-collection.webp": [
+    1600,
+    900
+  ],
+  "shinkei/nera-lighting.webp": [
+    1600,
+    900
+  ],
+  "shinkei/nera-wiring.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/nera-deployment.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/nera-assembly.webp": [
+    585,
+    661
+  ],
+  "shinkei/nera-wire-rack.webp": [
+    963,
+    730
+  ],
+  "shinkei/nera-view-clear.webp": [
+    1600,
+    900
+  ],
+  "shinkei/nera-view-fog.webp": [
+    1600,
+    900
+  ],
+  "shinkei/nera-panel.webp": [
+    720,
+    1280
+  ],
+  "shinkei/nera-clamp.webp": [
+    1600,
+    900
+  ],
+  "shinkei/nera-height.webp": [
+    1600,
+    900
+  ],
+  "shinkei/nera-side-view.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/nera-layout.webp": [
+    967,
+    798
+  ],
+  "shinkei/nera-cad-front.webp": [
+    618,
+    360
+  ],
+  "shinkei/nera-cad-side.webp": [
+    640,
+    284
   ]
 }
