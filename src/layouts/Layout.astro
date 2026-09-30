@@ -1,13 +1,13 @@
 ---
 import '../styles/global.css';
-import '../styles/theme.css';
 import { contactHref } from '../data/site.js';
 const { title = 'Zahin Kabir — Mechanical Design, Robotics & R&D', description = 'Engineering portfolio of Zahin Kabir. Projects in mechanical design, robotics, coffee processing, and machine learning.', active = '' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const url = (path = '') => `${base}${path}`;
+const shareImage = new URL(url('social-card.png'), Astro.site || 'https://zahink-engr.github.io').href;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : null;
 ---
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title}</title><meta name="description" content={description}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta name="theme-color" content="#0b0e0d"/>{canonical && <><link rel="canonical" href={canonical}/><meta property="og:url" content={canonical}/></>}<link rel="icon" href={url('favicon.svg')} type="image/svg+xml"/></head>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title}</title><meta name="description" content={description}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:image" content={shareImage}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="Zahin Kabir — Robotics and mechanical engineer. Secretly a chemical engineer."/><meta name="twitter:card" content="summary_large_image"/><meta name="theme-color" content="#101411"/>{canonical && <><link rel="canonical" href={canonical}/><meta property="og:url" content={canonical}/></>}<link rel="icon" href={url('favicon.svg')} type="image/svg+xml"/></head>
 <body><a class="skip" href="#main">Skip to content</a><header class="site-header"><a class="brand" href={url()} aria-label="Zahin Kabir home">ZK<span>ZAHIN KABIR</span></a><nav aria-label="Main navigation">{[['Projects','projects/'],['Experience','experience/'],['About','about/'],['Resume','resume/'],['Contact','contact/']].map(([label,path])=><a href={url(path)} aria-current={active === label ? 'page' : undefined}>{label}</a>)}</nav></header><main id="main"><slot/></main><footer><a class="brand" href={url()}>ZK<span>ZAHIN KABIR</span></a><p>Purdue Chemical Engineering · Class of 2027</p><a href={contactHref}>Email me <span aria-hidden="true">↗</span></a><small>© {new Date().getFullYear()} Zahin Kabir</small></footer></body></html>
 

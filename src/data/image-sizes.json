@@ -1,0 +1,146 @@
+{
+  "coffee-roaster/mechanical-structure-progress.webp": [
+    1179,
+    661
+  ],
+  "coffee-roaster/structural-welding-detail.webp": [
+    1179,
+    673
+  ],
+  "coffee-roaster/tentative-electrical-architecture.svg": [
+    1280,
+    1120
+  ],
+  "epics/bag-station-cad.webp": [
+    545,
+    541
+  ],
+  "kdp-degassing/modular-silo.webp": [
+    1600,
+    900
+  ],
+  "kdp-degassing/silo-gas-accumulation.webp": [
+    1600,
+    900
+  ],
+  "kdp-degassing/silo-versus-bag.webp": [
+    1600,
+    900
+  ],
+  "kdp-degassing/venting-probe-comparison.webp": [
+    710,
+    578
+  ],
+  "kdp-degassing/why-coffee-degasses.webp": [
+    1600,
+    901
+  ],
+  "ourobio/aqueous-extraction-trials.webp": [
+    1112,
+    470
+  ],
+  "ourobio/chromatography-peak-table.webp": [
+    590,
+    271
+  ],
+  "ourobio/dmso-separation.webp": [
+    462,
+    616
+  ],
+  "ourobio/indigo-calibration.webp": [
+    657,
+    408
+  ],
+  "ourobio/solvent-comparison.webp": [
+    466,
+    621
+  ],
+  "pressure-tester/test-rig.webp": [
+    491,
+    412
+  ],
+  "process-fault-classifier/architecture-comparison.webp": [
+    1800,
+    1050
+  ],
+  "process-fault-classifier/confusion-matrix.webp": [
+    1800,
+    1500
+  ],
+  "shinkei/adjustable-limit-switch-bracket.webp": [
+    385,
+    280
+  ],
+  "shinkei/hsi-texture-lab.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/hyperspectral-imaging-setup.webp": [
+    1600,
+    867
+  ],
+  "shinkei/rigor-analysis-visual.webp": [
+    1600,
+    884
+  ],
+  "shinkei/rigor-bracket-built.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/rigor-bracket-detail.webp": [
+    223,
+    156
+  ],
+  "shinkei/rigor-bracket-fitting.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/rigor-hmi.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/rigor-mechanical-assembly.webp": [
+    970,
+    696
+  ],
+  "shinkei/rigor-system-diagram.webp": [
+    670,
+    747
+  ],
+  "shinkei/rigor-tracking-poster.webp": [
+    640,
+    417
+  ],
+  "shinkei/rigor-tracking.gif": [
+    640,
+    417
+  ],
+  "shinkei/rigor-wiring.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/texture-analyzer-data-interface.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/texture-interface-bench.webp": [
+    1280,
+    720
+  ],
+  "shinkei/texture-lab-interface.webp": [
+    1280,
+    714
+  ],
+  "shinkei/texture-pink-ui-laptop.webp": [
+    720,
+    1280
+  ],
+  "shinkei/texture-printer-connector.webp": [
+    1200,
+    1600
+  ],
+  "shinkei/texture-terminal-readout.webp": [
+    1200,
+    1600
+  ]
+}
