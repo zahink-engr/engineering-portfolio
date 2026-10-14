@@ -313,7 +313,7 @@ export const projects = [
       },
       {
         "title": "The mechanical layout",
-        "text": "The current layout uses a perforated drum, a belt-driven motor outside the hot chamber, and a blower feeding heated air through a plenum. The beans will dump into a separate cooling tray. I want the drum, vanes, sensors, and control enclosure to be easy to remove as the design changes.",
+        "text": "The current plan uses a cantilevered drum with both bearings behind the roast chamber on a cold-side structural plate. That leaves the front plate available for the doors, probes, and viewing window. A belt-driven motor stays outside the hot zone, and a separate tray handles cooling. The shaft, bearing spacing, and supports still need load and deflection checks.",
         "diagram": true,
         "facts": [
           [
@@ -340,11 +340,11 @@ export const projects = [
       },
       {
         "title": "Control and logging plan",
-        "text": "For V1 I’m planning to use one Teensy 4.1 for sensor timing and actuator control, with a laptop handling logging, plots, and later analysis. The laptop can request a drum speed, but the Teensy will check the request against the control limits. I want measured RPM and power logged alongside commanded speed and heater duty so I can see when the hardware behaves differently from the command."
+        "text": "One Teensy 4.1 will timestamp sensor data and control the actuators. The laptop handles logging, plots, and later vision and ML; it can request an RPM, but the Teensy checks the bounds and rate of change. I’ll log commanded duty and speed alongside measured power and RPM. Camera frames have laptop timestamps, synchronized with Teensy markers. Temperature, audio, and vibration each need their own sampling rate."
       },
       {
         "title": "Tentative electrical layout",
-        "text": "This is my current block-level plan. The heater power path is separate from the low-voltage sensors and controls, with an independent hardware shutdown path. Exact supplies, driver interfaces, protection ratings, and connections still need to be worked out.",
+        "text": "I’ve revised the plan around a contactor and zero-cross SSR in the heater branch, with a separate hardware heater-permit chain. The proposed E-stop action removes heater power while the blower and drum stay powered for cooldown. A separate master disconnect removes operating power from both branches. The watchdog shutdown, stop behavior, exact ratings, and wiring still need design review and testing.",
         "gallery": [
           {
             "image": "coffee-roaster/tentative-electrical-architecture.svg",
@@ -362,35 +362,35 @@ export const projects = [
         ],
         "table": [
           [
-            "Controller",
-            "1 × Teensy 4.1; 3.3 V-compatible signal interfaces."
-          ],
-          [
             "Drum drive",
-            "NEMA23 stepper, belt/pulley reduction, and a driver matched to motor current."
+            "NEMA17 + TMC2209 at 24 V, with belt reduction. Final motor choice depends on the full torque and thermal checks."
           ],
           [
             "Shaft and bearings",
-            "12 mm shaft; 2 × F6001-2RS bearings proposed. Thermal isolation and fits still need checking."
+            "Proposed 12 mm shaft and two F6001-2RS bearings, both behind the chamber. Cantilever loads, spacing, fits and temperatures remain open."
           ],
           [
-            "Heat",
-            "120 V ceramic-core replacement element, approximately 1.5–1.6 kW; zero-cross SSR and heatsink."
+            "Heater",
+            "Confirmed 120 V element; 1200–1500 W target. Wattage depends on the available circuit and total load. Genuine 40 A-class zero-cross SSR with a suitable heatsink."
           ],
           [
-            "Airflow and cooling",
-            "2 × 24 V centrifugal blowers: roast airflow and separate downdraft cooling/chaff extraction. Exact models and driver interfaces pending."
+            "Hardware heater permit",
+            "24 VDC contactor coil gated by E-stop, manual-reset high-limit, airflow proving and watchdog-supervised enable. Separate one-shot thermal fuse in the heater branch."
+          ],
+          [
+            "Roast airflow",
+            "24 V centrifugal blower with its own PWM or analog control input. Select from its pressure–flow curve and the system back-pressure; do not PWM-switch its supply."
+          ],
+          [
+            "Controls and power",
+            "Teensy 4.1, 24 V PSU (at least 6.5 A provisional), fused 5 V buck, compatible signal interfaces and USB isolation before laptop-connected heated tests."
           ],
           [
             "Bean handling",
-            "Servo-operated doors, perforated cooling grate, and chaff trap."
-          ],
-          [
-            "Power and protection",
-            "Sized 24 V supply, regulated logic/servo rails, branch protection, hardware E-stop and independent over-temperature cutoff."
+            "Manual charge/dump doors first. Separate cooling blower, grate, and chaff collection. Servos and their 6 V supply are deferred."
           ]
         ],
-        "text": "The BOM is still a planning list. I’m choosing the motor, bearings, heater, and blowers early because their dimensions affect the CAD layout."
+        "text": "These are tentative selections from my October 2026 electrical review. I’m buying in stages, starting with rotation and low-voltage controls. The heater, blower, motor, probe fittings, and control-box parts all affect the CAD layout."
       },
       {
         "title": "Sensor list",
@@ -401,62 +401,70 @@ export const projects = [
         "table": [
           [
             "Temperature",
-            "4–5 Type K probes with MAX31856 interfaces: inlet, chamber, bean region, exhaust, and an optional extra channel."
+            "Five ungrounded Type K / MAX31856 channels: inlet, environment, bean region, exhaust and spare. About 10 Hz target, using data-ready timing; K extension wire and mini connectors."
           ],
           [
-            "Sound and vibration",
-            "I2S MEMS microphone plus an ADXL345- or MPU6050-class sensor outside the hot zone."
+            "Audio",
+            "ICS-43434 I2S mic, with a possible second reference mic. 44.1 kHz target; short digital wiring and a protected acoustic waveguide."
+          ],
+          [
+            "Vibration",
+            "ADXL345 on SPI near the rear bearing, cold side. 800 Hz target, subject to bandwidth and buffering checks."
           ],
           [
             "Humidity",
-            "2 × SHT31: ambient and a cooled exhaust sampling location."
+            "Two SHT31 sensors, ambient and cooled exhaust sample line; 1–5 Hz. Sample conditioning and lag need testing."
           ],
           [
-            "Actual drum speed",
-            "Incremental shaft encoder to compare measured RPM with commanded RPM."
+            "Drum speed",
+            "Incremental encoder, approximately 600 PPR candidate, read by hardware quadrature on the cold-side shaft."
           ],
           [
-            "DC power",
-            "INA226 monitor(s) on suitable low-voltage branches only."
+            "Airflow",
+            "SDP810/SDP31-class differential-pressure sensor across a cold-side restriction, plus blower tach. 10–50 Hz target; calibrate pressure to flow. Separate switch proves airflow for the heater chain."
           ],
           [
-            "Heater power",
-            "Separate isolated, AC-rated measurement hardware still to be selected."
+            "Power",
+            "INA226 on the 24 V rail only. PZEM-004T v3 is an AC-meter candidate pending interface/isolation checks. Log duty, voltage, real power and energy separately."
           ],
           [
             "Mass loss",
-            "Load cell and HX711 on an off-machine weighing fixture."
+            "Off-machine 0.01 g scale for pre/post-roast measurements. A load-cell/HX711 fixture is optional."
           ]
         ],
-        "text": "Temperature and other slow channels will share timestamps. Audio needs a separate higher-rate buffer. Exhaust temperature and the mounting location will determine whether the humidity sensor can produce useful measurements."
+        "text": "These are target rates, not measured performance. I’ll use Teensy timestamps, buffer the high-rate channels, and verify sensor timing and calibration before collecting a research dataset. Heater duty multiplied by voltage is not power; any power estimate needs a defined electrical model and comparison with measurements."
       },
       {
         "title": "Adding a camera",
-        "text": "I’d like to watch the beans through a borosilicate window and use that view to study tumbling and eventually adjust drum speed as the beans expand. The plan includes steady illumination and an air purge across the glass. An OV9281-class camera could support motion tracking, but it is monochrome; color measurement needs a different sensor and calibration. The camera would connect directly to the laptop for V1."
+        "text": "Vision is planned for V2. I’m considering an OV9782-class color global-shutter USB module, with manual exposure and white balance to verify on the actual module. A steady LED ring, borosilicate window, and ambient-air purge upstream of the heater should make the view more repeatable. A monochrome camera is still an option for motion tracking, but it would mean dropping color measurements. The laptop will process the images and send bounded RPM requests through the Teensy."
       },
       {
         "title": "Cooling and chaff",
-        "text": "The beans will fall onto a perforated tray with a separate blower pulling air down through the bed. A trap between the tray and blower will catch chaff. Keeping this separate lets the roast-airflow system and cooling tray do their own jobs."
+        "text": "The roast exhaust and cooling tray each need their own chaff collector. After a roast, beans will drop onto a perforated tray with a separate blower drawing air through the bed and a trap protecting its inlet. I’m also reserving room for smoke ducting and cleaning access; the extra back-pressure needs to be included in blower selection."
       },
       {
-        "title": "What I’ll test next",
-        "text": "The next step is to assemble the shaft, bearings, and drive and check alignment and bean agitation without heat. Then I’ll test the heater and airflow, followed by complete roast cycles and synchronized logging.",
+        "title": "Building and buying in stages",
+        "text": "The first milestone is still rotation without heat. I’ll add each subsystem once I can test it, rather than buy the whole instrument at once.",
         "steps": [
           [
-            "Rotation",
-            "Check alignment, actual RPM, vibration, and tumbling."
+            "V0 — rotation",
+            "Drive, rear bearings, encoder, vibration sensor and low-voltage controls. Check alignment, shaft deflection, torque and tumbling."
           ],
           [
-            "Heat and airflow",
-            "Measure temperature response and check the hardware shutdown path."
+            "V0.5 — thermal mule",
+            "Heater, roast blower, thermocouples and complete protective chain. Review wiring and test fault shutdown before heated operation."
           ],
           [
-            "Complete roast",
-            "Integrate loading, dumping, chaff collection, and cooling."
+            "V1 — functional roaster",
+            "Manual bean handling, cooling, both chaff collectors, humidity and calibrated pressure-based airflow."
           ],
           [
-            "Measurements",
-            "Check calibration and repeatability before training any prediction model."
+            "V1.5 — instrumentation",
+            "Audio, power meters, mass measurements and synchronized logging. Check calibration and repeatability."
+          ],
+          [
+            "V2 — vision and ML",
+            "Camera, steady lighting, sight glass and purge; later models and optional door automation."
           ]
         ]
       },
@@ -465,20 +473,24 @@ export const projects = [
         "text": "I’m looking at objective colorimetry or diffuse reflectance as an initial way to measure the finished beans. Agtron is still a possible later reference, but I would need paired measurements to calibrate against it. I haven’t completed roast trials or validated a prediction model yet."
       },
       {
-        "title": "Component details still to resolve",
-        "text": "The electrical review changed two items in the draft BOM: the INA226 cannot be connected directly to the mains heater, and the OV9281 cannot provide RGB color data. The Teensy also needs compatible signal levels, including any encoder, blower-driver, or stepper-driver interfaces.",
+        "title": "Decisions still open",
+        "text": "I still need to choose the heater wattage and available circuit, match a blower to the operating pressure and flow, finish the motor and cantilever calculations, and select the exact camera module. Microphone placement, a second reference mic, thermostat limits, watchdog circuitry and optional door automation are also open. The electrical diagram is a planning view, not a construction schematic or a validated safety system.",
         "references": [
           {
-            "label": "TI INA226 specifications",
-            "url": "https://www.ti.com/product/INA226"
+            "label": "MAX31856 timing and fault detection",
+            "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/max31856.pdf"
           },
           {
-            "label": "OMNIVISION OV9281 specifications",
-            "url": "https://www.ovt.com/products/ov9281/"
-          },
-          {
-            "label": "PJRC Teensy 4.1 specifications",
+            "label": "Teensy 4.1 power and GPIO specifications",
             "url": "https://www.pjrc.com/store/teensy41.html"
+          },
+          {
+            "label": "OV9782 color global-shutter sensor",
+            "url": "https://www.ovt.com/products/ov9782/"
+          },
+          {
+            "label": "SDP810 differential-pressure sensor",
+            "url": "https://sensirion.com/products/catalog/SDP810-500Pa"
           }
         ]
       }
